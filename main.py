@@ -301,4 +301,22 @@ class BrowserAction(CellColor):
         attr = self.find_ele(loc).get_attribute(attribute)
         return attr
 
+    def get_value(self, element):
+        """获取元素所有的value值"""
+        attrs = self.driver.execute_script(
+            'var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;',
+            element)
+        return attrs
 
+    def click_zoom_number(self, list_button, number):
+        self.click_ele("//*[@id='scaleSelectContainer']")
+        count = 0
+        self.click_ele(f"//option[text()='{list_button}']")
+        sleep(1)
+        while True:
+            self.click_ele("//button[@title='缩小']")
+            sleep(1)
+            count += 1
+            if count > number:
+                break
+        sleep(1)
