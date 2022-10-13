@@ -192,7 +192,7 @@ class BrowserAction(CellColor):
             elif file_style == 2:
                 self.click_ele(f"//div[@id='tabs']/div[{page_num}]")  # 点击需要切换的sheet表序号
             elif file_style == 3:
-                self.element_input("//input[@id='PageNumberInput']", value=page_num,clear=2)  # 当前页输入框中输入要转到的页码
+                self.element_input("//input[@id='PageNumberInput']", value=page_num, clear=2)  # 当前页输入框中输入要转到的页码
                 # self.find_ele("//input[@id='PageNumberInput']").send_keys(Keys.ENTER)  # 页码输入完成后按enter键
             elif file_style == 4:
                 self.element_input("//input[@id='pageNumber']", value=page_num, clear=2)  # 当前页输入框中输入要转到的页码
@@ -295,3 +295,10 @@ class BrowserAction(CellColor):
         except:
             # log.exception(traceback.format_exc())
             raise
+
+    def get_attribute(self, loc, attribute):
+        """获取该定位元素的标签类值"""
+        attr = self.find_ele(loc).get_attribute(attribute)
+        return attr
+
+
