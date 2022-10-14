@@ -326,3 +326,11 @@ class BrowserAction(CellColor):
         # 这个方法可以将滚动条拖动到需要显示的元素位置，此方法用途比较广，可以使用
         target = self.driver.find_element(by=By.XPATH, value=loc)
         self.driver.execute_script("arguments[0].scrollIntoView();", target)
+
+    def input_sign(self, text):
+        """在签批框中输入签批文本"""
+        self.find_ele("//div[@class='text']/textarea").send_keys(text)
+
+    def move_click(self, ele):
+        """移动到元素左上角100位置并点击"""
+        ActionChains(self.driver).move_to_element_with_offset(ele, -100, -100).click().perform()

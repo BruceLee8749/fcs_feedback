@@ -13,7 +13,7 @@ sheet_name = 'Sheet0'
 
 class TestCase:
 
-    def test_convert20_001(self):
+    def test_ZMYF_9507_1(self):
         """参数isShowList，参数为0，文档左右空白部分大小是否统一"""
         if get_cell(fcs_result_path, 18, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
