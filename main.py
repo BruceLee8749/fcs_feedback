@@ -301,4 +301,28 @@ class BrowserAction(CellColor):
         attr = self.find_ele(loc).get_attribute(attribute)
         return attr
 
+    def get_value(self, element):
+        """获取元素所有的value值"""
+        attrs = self.driver.execute_script(
+            'var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;',
+            element)
+        return attrs
 
+    def click_zoom_number(self, list_button, num):
+        """点击缩放比例的“-"按钮多次"""
+        self.click_ele("//*[@id='scaleSelectContainer']")
+        count = 0
+        self.click_ele(f"//option[text()='{list_button}']")
+        sleep(1)
+        while True:
+            self.click_ele("//button[@title='缩小']")
+            sleep(1)
+            count += 1
+            if count > num:
+                break
+        sleep(1)
+
+    def swap_scroll(self, loc):  # 使用js脚本拖动到指定地方
+        # 这个方法可以将滚动条拖动到需要显示的元素位置，此方法用途比较广，可以使用
+        target = self.driver.find_element(by=By.XPATH, value=loc)
+        self.driver.execute_script("arguments[0].scrollIntoView();", target)
