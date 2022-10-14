@@ -308,7 +308,8 @@ class BrowserAction(CellColor):
             element)
         return attrs
 
-    def click_zoom_number(self, list_button, number):
+    def click_zoom_number(self, list_button, num):
+        """点击缩放比例的“-"按钮多次"""
         self.click_ele("//*[@id='scaleSelectContainer']")
         count = 0
         self.click_ele(f"//option[text()='{list_button}']")
@@ -317,6 +318,11 @@ class BrowserAction(CellColor):
             self.click_ele("//button[@title='缩小']")
             sleep(1)
             count += 1
-            if count > number:
+            if count > num:
                 break
         sleep(1)
+
+    def swap_scroll(self, loc):  # 使用js脚本拖动到指定地方
+        # 这个方法可以将滚动条拖动到需要显示的元素位置，此方法用途比较广，可以使用
+        target = self.driver.find_element(by=By.XPATH, value=loc)
+        self.driver.execute_script("arguments[0].scrollIntoView();", target)
