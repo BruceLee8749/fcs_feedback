@@ -114,9 +114,9 @@ class BrowserAction(CellColor):
         super().__init__()
         prefs = {'download.default_directory': download_path}
         chrome_options = Options()
-        # chrome_options.add_argument('--ignore-certificate-errors')
+        chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_experimental_option('prefs', prefs)
-        # chrome_options.add_experimental_option("excludeSwitches",["enable-logging"])
+        chrome_options.add_experimental_option("excludeSwitches",["enable-logging"])
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.implicitly_wait(5)
         self.driver.maximize_window()
@@ -316,7 +316,7 @@ class BrowserAction(CellColor):
         sleep(1)
         while True:
             self.click_ele("//button[@title='缩小']")
-            sleep(1)
+            sleep(2)
             count += 1
             if count > num:
                 break
