@@ -13,6 +13,29 @@ sheet_name = 'Sheet0'
 
 class TestCase:
 
+    def test_ZMYF_8795_1(self):
+        """参数isPrint，参数为0不展示打印按钮"""
+        if get_cell(fcs_result_path, 4, 9, sheet_name) != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 4, 10, sheet_name)
+        driver.open_bro(url)
+        sleep(2)
+        assert driver.get_attribute("//*[@id='print']",
+                                    "style") == 'display: none;'  # 验证该元素的style值为display：none
+
+    def test_ZMYF_8795_2(self):
+        """参数isPrint，参数为1显示打印按钮"""
+        if get_cell(fcs_result_path, 5, 9, sheet_name) != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 5, 10, sheet_name)
+        driver.open_bro(url)
+        element = driver.find_ele("//*[@id='print']")
+        attrs = driver.get_value(element)  # 获取全部的value
+        assert "display: none;" not in attrs  # 验证value中不存在display：none
+        sleep(2)
+        """截图验证"""
+        assert driver.screenshot_save(5, sheet_name) == 0
+
     def test_ZMYF_8923_1(self):
         """参数isShowList，参数为0不展示文档目录"""
         if get_cell(fcs_result_path, 9, 9, sheet_name) != '通过':
