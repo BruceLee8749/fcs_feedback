@@ -7,7 +7,7 @@ driver = BrowserAction()
 pro_path = os.path.dirname(os.path.dirname(__file__))
 path = get_conf('FCS', '测试结果文件夹')
 fcs_result_path = pro_path + "/" + path
-sheet_name = 'Sheet0'
+sheet_name = '功能参数'
 
 
 class TestCase:
@@ -32,8 +32,8 @@ class TestCase:
         print(url)
         driver.open_bro(url)
         driver.element_input("//input[@id='currentPage']", 9, clear=2)
-        driver.screenshot_save(7, sheet_name)
-        # assert driver.screenshot_save(7, sheet_name) == 0
+        sleep(5)
+        assert driver.screenshot_save(7, sheet_name) == 0
 
     def test_ZMYF_9250(self):
         if get_cell(fcs_result_path, 12, 9, sheet_name) != '通过':
@@ -81,7 +81,7 @@ class TestCase:
         print(url)
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
-        file_name = driver.get_text("//div[@class='title___gzxbE']")  # 获取文件名
+        file_name = driver.get_text("//span[@class='title']")  # 获取文件名
         driver.ele_exist("//img[@title='下载']")  # 验证参数为1时，有“下载”按钮存在
         driver.click_ele("//img[@title='下载']")
         sleep(2)
@@ -94,7 +94,7 @@ class TestCase:
         print(url)
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
-        file_name = driver.get_text("//div[@class='title___gzxbE']")  # 获取文件名
+        file_name = driver.get_text("//span[@class='title']")  # 获取文件名
         driver.ele_exist("//img[@title='下载']")  # 验证参数为1时，有“下载”按钮存在
         driver.click_ele("//img[@title='下载']")
         sleep(2)
