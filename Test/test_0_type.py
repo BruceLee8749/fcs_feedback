@@ -24,6 +24,9 @@ class TestCase:
         driver.click_ele("//img[@title='下载']")
         sleep(2)
         assert (download_file_exist(file_name))  # 验证项目download文件夹下有该文件
+        file_path = r"F:\fcs_feedback\Test\download\ZMYF-8551.xls"
+        sheet_name1 = "Sheet1"
+        assert get_cell_xls(file_path, 1, 1, sheet_name1) == "干部花名册报表(2021年03月09日)"
 
     def test_ZMYF_8888_1(self):
         if get_cell(fcs_result_path, 7, 9, sheet_name) != '通过':

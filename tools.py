@@ -10,6 +10,7 @@ import math
 import operator
 from functools import reduce
 import zipfile
+import xlrd
 from selenium.webdriver import ActionChains
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
@@ -134,6 +135,13 @@ def get_cell(file_path, row_num, column_num, sheet_name):
     workbook = load_workbook(file_path)
     sheet = workbook[sheet_name]
     cell_value = sheet.cell(row=row_num, column=column_num).value
+    return cell_value
+
+
+def get_cell_xls(file_path, row_num, column_num, sheet_name):
+    wb = xlrd.open_workbook(file_path)
+    sheet = wb.sheet_by_name(sheet_name)  # 通过名称获取
+    cell_value = sheet.cell_value(rowx=int(row_num)-1, colx=int(column_num)-1)
     return cell_value
 
 
