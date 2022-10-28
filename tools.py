@@ -141,8 +141,25 @@ def get_cell(file_path, row_num, column_num, sheet_name):
 def get_cell_xls(file_path, row_num, column_num, sheet_name):
     wb = xlrd.open_workbook(file_path)
     sheet = wb.sheet_by_name(sheet_name)  # 通过名称获取
-    cell_value = sheet.cell_value(rowx=int(row_num)-1, colx=int(column_num)-1)
+    cell_value = sheet.cell_value(rowx=int(row_num) - 1, colx=int(column_num) - 1)
     return cell_value
+
+
+def file_value(file_path):  # 获取文件名后缀
+    postfix = os.path.splitext(file_path)[-1]
+    return postfix
+
+
+def get_excel_content(file_path, row_num, column_num, sheet_name):  # 获取Excel文本内容
+    excel_content = ""
+    if file_value(file_path) == '.xlsx':
+        excel_content = get_cell(file_path, row_num, column_num, sheet_name)
+    elif file_value(file_path) == '.xls':
+        excel_content = get_cell_xls(file_path, row_num, column_num, sheet_name)
+    else:
+        print("非Excel文件")
+        pass
+    return excel_content
 
 
 def get_max_row(file_path, sheet_name):
