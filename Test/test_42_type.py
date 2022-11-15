@@ -34,7 +34,7 @@ class TestCase:
         assert "display: none;" not in attrs  # 验证value中不存在display：none
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(5, sheet_name) == 0
+        driver.screenshot_save(5, sheet_name)
 
     def test_ZMYF_8923_1(self):
         """参数isShowList，参数为0不展示文档目录"""
@@ -57,7 +57,7 @@ class TestCase:
         assert "display: none;" not in attrs  # 验证value中不存在display：none
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(10, sheet_name) == 0
+        driver.screenshot_save(10, sheet_name)
 
     def test_ZMYF_9507_2(self):
         """参数isShowList，参数为0，文档左右空白部分大小是否统一"""
@@ -67,7 +67,7 @@ class TestCase:
         driver.open_bro(url)
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(19, sheet_name) == 0
+        driver.screenshot_save(19, sheet_name)
 
     def test_ZMYF_9513(self):
         """分别在自动缩放、实际大小、适合页面、适合页宽的情况下，多次点击“-”至缩小到10%"""
@@ -102,34 +102,50 @@ class TestCase:
 
     def test_ZMYF_9966(self):
         """参数isFullScreen，参数为0不展示全屏按钮"""
-        if get_cell(fcs_result_path, 24, 9, sheet_name) != '通过':
+        if get_cell(fcs_result_path, 23, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 24, 10, sheet_name)
+        url = get_cell(fcs_result_path, 23, 10, sheet_name)
         driver.open_bro(url)
         sleep(1)
         assert driver.get_attribute("//*[@id='presentationMode']",
                                     "style") == 'display: none;'  # 验证该元素的style值为display：none
         """截图验证"""
-        assert driver.screenshot_save(24, sheet_name) == 0
+        driver.screenshot_save(23, sheet_name)
 
     def test_ZMYF_10017(self):
         """参数isPrint，参数为1转换和打开文档正常"""
-        if get_cell(fcs_result_path, 25, 9, sheet_name) != '通过':
+        if get_cell(fcs_result_path, 24, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 25, 10, sheet_name)
+        url = get_cell(fcs_result_path, 24, 10, sheet_name)
         driver.open_bro(url)
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(25, sheet_name) == 0
+        driver.screenshot_save(24, sheet_name)
 
     def test_ZMYF_9976(self):
         """参数isShowList，参数为1目录中最后一个目录下方无其他无关内容显示"""
-        if get_cell(fcs_result_path, 34, 9, sheet_name) != '通过':
+        if get_cell(fcs_result_path, 33, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 34, 10, sheet_name)
+        url = get_cell(fcs_result_path, 33, 10, sheet_name)
         driver.open_bro(url)
         sleep(2)
         driver.swap_scroll("//a[contains(text(),'保全变更')]")  # 滑动滚动条到对应最后一个元素位置
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(34, sheet_name) == 0
+        driver.screenshot_save(33, sheet_name)
+
+    def test_ZMYF_8837(self):
+        """参数isShowList，参数为1目录中最后一个目录下方无其他无关内容显示"""
+        if get_cell(fcs_result_path, 39, 9, sheet_name) != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 39, 10, sheet_name)
+        driver.open_bro(url)
+        sleep(2)
+        """截图验证"""
+        driver.screenshot_save(39, sheet_name)
+
+    def test_ZMYF_9238(self):
+        assert get_cell(fcs_result_path, 43, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9523(self):
+        assert get_cell(fcs_result_path, 44, 9, sheet_name) == '通过'

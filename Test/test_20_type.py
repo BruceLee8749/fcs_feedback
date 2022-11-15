@@ -21,4 +21,4 @@ class TestCase:
         driver.open_bro(url)
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(18, sheet_name) == 0
+        driver.screenshot_save(18, sheet_name)

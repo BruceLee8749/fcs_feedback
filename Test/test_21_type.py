@@ -39,3 +39,11 @@ class TestCase:
         driver.click_ele("//*[text()=' 打印 ']")
         sleep(1)
         driver.screenshot_save(11, sheet_name)
+
+    def test_ZMYF_10066(self):
+        if get_cell(fcs_result_path, 45, 9, sheet_name) != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 45, 10, sheet_name)
+        driver.open_bro(url)
+        sleep(5)
+        driver.screenshot_save(45, sheet_name)

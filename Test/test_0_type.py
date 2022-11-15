@@ -35,7 +35,7 @@ class TestCase:
         driver.open_bro(url)
         driver.element_input("//input[@id='currentPage']", 9, clear=2)
         sleep(5)
-        assert driver.screenshot_save(7, sheet_name) == 0
+        driver.screenshot_save(7, sheet_name)
 
     def test_ZMYF_9250(self):
         if get_cell(fcs_result_path, 12, 9, sheet_name) != '通过':
@@ -44,7 +44,7 @@ class TestCase:
         print(url)
         driver.open_bro(url)
         driver.element_input("//input[@id='currentPage']", 20, clear=2)
-        assert driver.screenshot_save(12, sheet_name) == 0
+        driver.screenshot_save(12, sheet_name)
 
     def test_ZMYF_9266(self):
         if get_cell(fcs_result_path, 13, 9, sheet_name) != '通过':
@@ -74,13 +74,13 @@ class TestCase:
         url = get_cell(fcs_result_path, 14, 10, sheet_name)
         print(url)
         driver.open_bro(url)
-        assert driver.screenshot_save(7, sheet_name) == 0
+        driver.screenshot_save(14, sheet_name)
 
     def test_ZMYF_9328(self):
         if get_cell(fcs_result_path, 16, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 16, 10, sheet_name)
-        print(url)
+        # print(url)
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
         file_name = driver.get_text("//span[@class='title']")  # 获取文件名
@@ -93,7 +93,7 @@ class TestCase:
         if get_cell(fcs_result_path, 22, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 22, 10, sheet_name)
-        print(url)
+        # print(url)
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
         file_name = driver.get_text("//span[@class='title']")  # 获取文件名
@@ -103,25 +103,50 @@ class TestCase:
         assert (download_file_exist(file_name))  # 验证项目download文件夹下有该文件
 
     def test_ZMYF_8733(self):
-        if get_cell(fcs_result_path, 30, 9, sheet_name) != '通过':
+        if get_cell(fcs_result_path, 29, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 30, 10, sheet_name)
-        print(url)
+        url = get_cell(fcs_result_path, 29, 10, sheet_name)
+        # print(url)
         driver.open_bro(url)
         assert (driver.get_text("//span[@title='总页数']")) == '6'
 
-    def test_ZMYF_9160_1(self):
-        if get_cell(fcs_result_path, 31, 9, sheet_name) != '通过':
+    def test_ZMYF_9160(self):
+        if get_cell(fcs_result_path, 30, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 31, 10, sheet_name)
-        print(url)
+        url = get_cell(fcs_result_path, 30, 10, sheet_name)
+        # print(url)
         driver.open_bro(url)
         assert (driver.get_text("//span[@title='总页数']")) == '4'
 
     def test_ZMYF_9903(self):
-        if get_cell(fcs_result_path, 33, 9, sheet_name) != '通过':
+        if get_cell(fcs_result_path, 32, 9, sheet_name) != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 33, 10, sheet_name)
-        print(url)
+        url = get_cell(fcs_result_path, 32, 10, sheet_name)
+        # print(url)
         driver.open_bro(url)
         assert (driver.get_text("//span[@title='总页数']")) == '1'
+
+    def test_ZMYF_9372(self):
+        assert get_cell(fcs_result_path, 36, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9486(self):
+        assert get_cell(fcs_result_path, 37, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9503(self):
+        assert get_cell(fcs_result_path, 37, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9906(self):
+        if get_cell(fcs_result_path, 52, 9, sheet_name) != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 52, 10, sheet_name)
+        driver.open_bro(url)
+
+    def test_ZMYF_3771(self):
+        assert get_cell(fcs_result_path, 55, 9, sheet_name) == '通过'
+
+    def test_ZMYF_3800(self):
+        if get_cell(fcs_result_path, 56, 9, sheet_name) != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 56, 10, sheet_name)
+        driver.open_bro(url)
+        assert driver.get_text("//div[@id='sheet-10']/span") == "互联网工作量测算"
