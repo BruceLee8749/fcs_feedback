@@ -22,3 +22,6 @@ class TestCase:
         sleep(2)
         """截图验证"""
         driver.screenshot_save(18, sheet_name)
+
+    def test_ZMYF_8581(self):
+        assert get_cell(fcs_result_path, 57, 9, sheet_name) == '通过'

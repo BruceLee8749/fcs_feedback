@@ -75,10 +75,11 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 20, 10, sheet_name)
         driver.open_bro(url)
-        sleep(1)
-        driver.click_zoom_number("自动缩放", 4)  # 下拉菜单中点击自动缩放，再点击5次缩小按钮
-        sleep(1)
+        sleep(3)
+        driver.click_zoom_number("自动缩放", 6)  # 下拉菜单中点击自动缩放，再点击5次缩小按钮
+        sleep(3)
         element = driver.find_ele("//button[@title='缩小']")
+        print(element)
         attrs = driver.get_value(element)
         assert "disabled" in attrs  # 验证value值中存在disable
         sleep(1)
@@ -94,8 +95,8 @@ class TestCase:
         attrs2 = driver.get_value(element)
         assert "disabled" in attrs2
         sleep(1)
-        driver.click_zoom_number("适合页宽", 4)  # 下拉菜单中点击适合页宽，再点击5次缩小按钮
-        sleep(1)
+        driver.click_zoom_number("适合页宽", 6)  # 下拉菜单中点击适合页宽，再点击5次缩小按钮
+        sleep(2)
         element = driver.find_ele("//button[@title='缩小']")
         attrs3 = driver.get_value(element)
         assert "disabled" in attrs3
@@ -149,3 +150,12 @@ class TestCase:
 
     def test_ZMYF_9523(self):
         assert get_cell(fcs_result_path, 44, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9262_1(self):
+        assert get_cell(fcs_result_path, 65, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9228(self):
+        assert get_cell(fcs_result_path, 70, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9992(self):
+        assert get_cell(fcs_result_path, 72, 9, sheet_name) == '通过'

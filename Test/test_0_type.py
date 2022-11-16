@@ -150,3 +150,24 @@ class TestCase:
         url = get_cell(fcs_result_path, 56, 10, sheet_name)
         driver.open_bro(url)
         assert driver.get_text("//div[@id='sheet-10']/span") == "互联网工作量测算"
+
+    def test_ZMYF_8751_1(self):
+        assert get_cell(fcs_result_path, 60, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9260(self):
+        assert get_cell(fcs_result_path, 64, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9262_2(self):
+        assert get_cell(fcs_result_path, 66, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9365(self):
+        assert get_cell(fcs_result_path, 68, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9498(self):
+        assert get_cell(fcs_result_path, 69, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9261(self):
+        assert get_cell(fcs_result_path, 71, 9, sheet_name) == '通过'
+
+    def test_ZMYF_10056(self):
+        assert get_cell(fcs_result_path, 73, 9, sheet_name) == '通过'

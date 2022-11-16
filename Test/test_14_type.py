@@ -69,3 +69,9 @@ class TestCase:
         driver.open_bro(url)
         sleep(2)
         driver.ele_not_exist("//div[@id='page-2']")
+
+    def test_ZMYF_9192(self):
+        assert get_cell(fcs_result_path, 63, 9, sheet_name) == '通过'
+
+    def test_ZMYF_10084(self):
+        assert get_cell(fcs_result_path, 74, 9, sheet_name) == '通过'

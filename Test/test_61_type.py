@@ -60,3 +60,17 @@ class TestCase:
     def test_ZMYF_10112(self):
         assert get_cell(fcs_result_path, 48, 9, sheet_name) == '通过'
 
+    def test_ZMYF_8699(self):
+        assert get_cell(fcs_result_path, 58, 9, sheet_name) == '通过'
+
+    def test_ZMYF_8699_1(self):
+        assert get_cell(fcs_result_path, 59, 9, sheet_name) == '通过'
+
+    def test_ZMYF_8751_2(self):
+        assert get_cell(fcs_result_path, 61, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9171(self):
+        assert get_cell(fcs_result_path, 62, 9, sheet_name) == '通过'
+
+    def test_ZMYF_9262_3(self):
+        assert get_cell(fcs_result_path, 67, 9, sheet_name) == '通过'
