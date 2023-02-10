@@ -27,6 +27,7 @@ def dict_in(dict1, dict2):  # 检查dict2是否包含dict1
     try:
         lis1, lis2 = [], []
         for key in dict1:
+            # 获取dict1和dict2中的值，并添加到lis1和lis2中
             lis1.append(dict1[key])
             lis2.append(dict_get(dict2, key, None))
         return lis1 == lis2
@@ -113,17 +114,18 @@ def get_target_cases(proj):
     """
     target_cases = {}  # 目标测试用例的字典
     all_case_excel = get_conf(proj, '指定文件')  # 获得指定文件下的数据
-    if all_case_excel == '':  # 如果指定为空
+    if all_case_excel:  # 如果指定为空
         for ss in get_all_xlsx_file(proj + '测试用例'):  # 空的话就是运行所有，遍历测试用例文件夹
-            target_cases[ss] = get_case_sheet_name(proj + '测试用例',
-                                                   ss)  # 字典格式{"表格1",["sheet1","sheet2"],"表格2",["sheet1","sheet2"]}
+            # 字典格式{"表格1",["sheet1","sheet2"],"表格2",["sheet1","sheet2"]}
+            target_cases[ss] = get_case_sheet_name(proj + '测试用例',ss)
     else:  # 指定文件不为空时
         all_case_excel_list = all_case_excel.split()  # 拆分指定文件，如果有多个值，就拆分为多个值组成的列表
         if len(all_case_excel_list) == 1:  # 如果只有一个值时，指定工作表生效
-            if get_conf(proj, '指定工作表') == '':  # 如果指定工作表为空时
+            if get_conf(proj, '指定工作表'):  # 如果指定工作表为空时
                 target_cases[all_case_excel] = get_case_sheet_name(proj + '测试用例', all_case_excel)  # 获得该excel表下所有工作表
             else:  # 指定工作表不为空时
-                # target_cases[all_case_excel] = get_case_sheet_name(proj + '测试用例', get_conf(proj, '指定工作表').split())  # 不为空为按照指定的来写入字典
+                # target_cases[all_case_excel] = get_case_sheet_name(proj + '测试用例', get_conf(proj, '指定工作表').split())
+                # 不为空为按照指定的来写入字典
                 target_cases[all_case_excel] = get_conf(proj, '指定工作表').split()  # 不为空为按照指定的来写入字典
         else:  # 指定为多个值时
             for ss in all_case_excel_list:  # 遍历指定的多个表格

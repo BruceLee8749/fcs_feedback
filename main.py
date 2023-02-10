@@ -116,7 +116,7 @@ class BrowserAction(CellColor):
         chrome_options = Options()
         chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_experimental_option('prefs', prefs)
-        chrome_options.add_experimental_option("excludeSwitches",["enable-logging"])
+        chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.implicitly_wait(5)
         self.driver.maximize_window()
@@ -170,7 +170,6 @@ class BrowserAction(CellColor):
             sleep(2)
             self.find_ele(loc).send_keys(value)  # 再输入
             self.find_ele(loc).send_keys(Keys.ENTER)
-
         except:
             # log.exception(traceback.format_exc())
             raise
